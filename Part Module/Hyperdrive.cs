@@ -1,5 +1,5 @@
 using RandomizedSystems.WarpDrivers;
-
+using System;
 
 namespace RandomizedSystems.Parts
 {
@@ -8,7 +8,7 @@ namespace RandomizedSystems.Parts
     {
         private const string CONTROL_LOCK_ID = "Warp Window Lock";
         private static string lastSeed = string.Empty;
-        
+
         public static string seedString
         {
             get;
@@ -20,9 +20,16 @@ namespace RandomizedSystems.Parts
             private set;
         }
 
+        bool boolcrystal = true;
+        double demandcrystal = 1;
         public override void OnActive()
         {
             ResetKerbolPrompt();
+        }
+        public static int GetResourceID(Part part, string resourceName)
+        {
+            PartResourceDefinition resource = PartResourceLibrary.Instance.GetDefinition(resourceName);
+            return resource.id;
         }
 
         [KSPEvent(guiActive = true, guiName = "seed down")]
@@ -51,8 +58,15 @@ namespace RandomizedSystems.Parts
                 return;
 
             }
-            WarpDrive.SetNextWarpAction(new WarpDrive.OnWarpDelegate(WarpMessage), new WarpDrive.OnWarpDelegate(ResetKerbolPrompt));
-            WarpDrive.JumpToNewSystem(true,WarpDrive.seed2, vessel);
+            Part crystalpart = WarpDrive.GetResourcePart(FlightGlobals.ActiveVessel, "WarpCrystal");
+            double crystalamount = part.Resources.Get(GetResourceID(crystalpart, "WarpCrystal")).amount;
+            if ( crystalamount>= 1)
+            {
+                int Crystalid = GetResourceID(crystalpart, "WarpCrystal");
+                vessel.RequestResource(part, Crystalid, demandcrystal, boolcrystal);
+                WarpDrive.SetNextWarpAction(new WarpDrive.OnWarpDelegate(WarpMessage), new WarpDrive.OnWarpDelegate(ResetKerbolPrompt));
+                WarpDrive.JumpToNewSystem(true, WarpDrive.seed2, vessel);
+            }
         }
 
         [KSPEvent(guiActive = true, guiName = "Return to Kerbol", active = false)]
@@ -67,6 +81,7 @@ namespace RandomizedSystems.Parts
                 ScreenMessages.PostScreenMessage("Warp Drive cannot be activated. Please enter orbit around the nearest star.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
                 return;
             }
+            
             WarpDrive.SetNextWarpAction(new WarpDrive.OnWarpDelegate(WarpMessage), new WarpDrive.OnWarpDelegate(ResetKerbolPrompt));
             WarpDrive.JumpToKerbol(true, vessel);
         }
@@ -82,7 +97,7 @@ namespace RandomizedSystems.Parts
 
         private void ResetKerbolPrompt()
         {
-            if (WarpDrive.seedString == AstroUtils.KERBIN_SYSTEM_COORDS)
+            if (WarpDrive.seedString == "1")
             {
                 Events["JumpToKerbol"].active = false;
             }

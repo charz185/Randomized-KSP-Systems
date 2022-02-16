@@ -26,7 +26,7 @@ namespace RandomizedSystems
         public const double KERBIN_RADIUS = 600000;
         public const double GRAV_CONSTANT = 6.673e-1;
         public const double MUN_SOI = 2429559.1;
-        public const string KERBIN_SYSTEM_COORDS = "0";
+        public const string KERBIN_SYSTEM_COORDS = "1";
         public const string STAR_SYSTEM_FOLDER_NAME = "Star Systems";
         public const string SEED_PERSISTENCE = "_persistent";
         public const string DEFAULT_PERSISTENCE = "persistent";

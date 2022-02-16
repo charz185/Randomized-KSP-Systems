@@ -262,7 +262,7 @@ namespace RandomizedSystems.Systems
 
         public void ApplyChanges()
         {
-            if (solarSystem.seed != AstroUtils.KERBIN_SYSTEM_COORDS && string.IsNullOrEmpty(name))
+            if (solarSystem.seed != "1" && string.IsNullOrEmpty(name))
             {
                 SystemNamer.NameBody(this);
             }
