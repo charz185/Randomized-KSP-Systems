@@ -10,7 +10,6 @@ namespace RandomizedSystems.WarpDrivers
     public class WarpDrive : MonoBehaviour
     {
         public static int seed = 0;
-
         public static string seedString
         {
             get;

@@ -47,7 +47,7 @@ namespace RandomizedSystems.Randomizers
             }
         }
 
-        public CelestialBody referenceBody;
+        public CelestialBody referenceBody = CelestialBody.KERBOL_NAME;
 
         public PlanetData referenceBodyData
         {
