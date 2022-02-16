@@ -50,7 +50,7 @@ namespace RandomizedSystems.Randomizers
 
         public override void Randomize()
         {
-            if (WarpDrivers.WarpDrive.seedString == AstroUtils.KERBIN_SYSTEM_COORDS)
+            if (WarpDrivers.WarpDrive.seedString == "1")
             {
                 return;
             }

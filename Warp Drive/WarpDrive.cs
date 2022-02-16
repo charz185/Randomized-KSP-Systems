@@ -43,6 +43,7 @@ namespace RandomizedSystems.WarpDrivers
         /// If this is true, we need to purge all "old" vessels from the current system.
         /// </summary>
         public static bool needsPurge = false;
+        
 
         public delegate void OnWarpDelegate();
 
@@ -83,6 +84,17 @@ namespace RandomizedSystems.WarpDrivers
             seed2 = seed2 + "1";
             ScreenMessages.PostScreenMessage("SEED: "+seed2, 3.0f, ScreenMessageStyle.UPPER_CENTER);
         }
+        public static Part GetResourcePart(Vessel v, string resourceName)
+        {
+            foreach (Part mypart in v.parts)
+            {
+                if (mypart.Resources.Contains(resourceName))
+                {
+                    return mypart;
+                }
+            }
+            return null;
+        }
         /// <summary>
         /// Automatically jumps to set seed.
         /// </summary>
@@ -109,9 +121,11 @@ namespace RandomizedSystems.WarpDrivers
         }
         public static void JumpToKerbol(bool processActions, Vessel warpVessel)
         {
+
             currentSeed = AstroUtils.KERBIN_SYSTEM_COORDS;
             Warp(processActions, currentSeed, false, seedString);
             PersistenceGenerator.WarpSingleVessel(lastSeed, seedString, warpVessel);
+           
         }
 
 
@@ -165,7 +179,7 @@ namespace RandomizedSystems.WarpDrivers
                 Debugger.LogException("Unable to jump to system!", e);
                 return;
             }
-            if (seedString != AstroUtils.KERBIN_SYSTEM_COORDS)
+            if (seedString != "1")
             {
                 // We've left Kerbol, so we need to purge the Kerbol vessels
                 needsPurge = true;

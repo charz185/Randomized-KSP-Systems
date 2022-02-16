@@ -86,7 +86,7 @@ namespace RandomizedSystems.Randomizers
 
         public void CreateOrbit()
         {
-            if (orbitData.randomized || WarpDrivers.WarpDrive.seedString == AstroUtils.KERBIN_SYSTEM_COORDS)
+            if (orbitData.randomized || WarpDrivers.WarpDrive.seedString == "1")
             {
                 // Already randomized data
                 return;
