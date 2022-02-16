@@ -8,7 +8,7 @@ Thanks to /u/SuperSeniorComicGuy over at Reddit's /r/KerbalSpaceProgram subreddi
 
 
 Here's a list of what changes:
-
+(soon to be re added)
 ### Atmospheres:  
 * Atmosphere (does a body have one?)  
 * Oxygen (does a body have it?)  
@@ -33,6 +33,11 @@ Here's a list of what changes:
 What happens is an entirely new solar system is produced. The planets themselves are the same as the old ones, but everything about them is different. You can then leave the system (by warping your ship home or simply pausing and hit "Return to Space Center") and all ships left in orbit will remain in orbit just as you left them.
 
 To activate the Warp Drive, just go into a solar orbit around Kerbol. Right-click on the Warp Drive part (found in the VAB under "Utility" -- it looks like an ASAS module), then click on "Activate Warp Drive." A box will come up asking for hyperspace coordinates. Type in your seed, then click the button and the system will randomize based on your seed.
+## changelog 1.2.8
+> added new resource, warp crystal
+> added new part, warp crystallizer
+> changed Kerbal system cords from 0 to 1
+> made it so that the warp drive uses warp crystal as fuel to warp.
 
 ## changelog 1.2.0
 > updated mod to newest version of C#, so that itworks on newer versions of KSP
