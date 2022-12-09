@@ -23,13 +23,13 @@ namespace RandomizedSystems.Randomizers
 		protected double mass;
 		protected double density;
 
-		public override void Cache ()
+		public override void Cache()
 		{
 			rotationPeriod = planet.rotationPeriod;
 			radius = planet.Radius;
 			mass = planet.Mass;
-			density = AstroUtils.CalculateDensity (mass, radius);
-			
+			density = AstroUtils.CalculateDensity(mass, radius);
+
 		}
 
 		public override void Randomize ()
@@ -75,8 +75,7 @@ namespace RandomizedSystems.Randomizers
 			{
 				if (ScaledSpace.Instance != null)
 				{
-					List<Transform> planets = ScaledSpace.Instance.scaledSpaceTransforms;
-					foreach (Transform planetTfm in planets)
+					foreach (Transform planetTfm in ScaledSpace.Instance.transform)
 					{
 						if (planetTfm.name == planet.name)
 						{
@@ -89,8 +88,8 @@ namespace RandomizedSystems.Randomizers
 			}
 			if (solarSystem.debug)
 			{
-				Debugger.Log("Scale: " + scale);
-				Debugger.Log("Rotation period: " + rotationPeriod + " seconds per rotation (" +
+				Debugger.Log ("Scale: " + scale);
+				Debugger.Log ("Rotation period: " + rotationPeriod + " seconds per rotation (" +
 					(rotationPeriod / 60) + " minutes, " + ((rotationPeriod / 60) / 60) + " hours)");
 			}
 			planet.rotationPeriod = rotationPeriod;
