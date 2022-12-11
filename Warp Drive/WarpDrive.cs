@@ -18,7 +18,7 @@ namespace RandomizedSystems.WarpDrivers
 			private set;
 		}
 
-		private static string currentSeed = AstroUtils.KERBIN_SYSTEM_COORDS;
+		public static string currentSeed = AstroUtils.KERBIN_SYSTEM_COORDS;
 		public static string lastSeed = string.Empty;
 		private static bool hasInit = false;
 		private static Rect windowPosition;
@@ -65,7 +65,6 @@ namespace RandomizedSystems.WarpDrivers
 			if (seed > 0)
 			{
 				int X = seed-1;
-				seedString = X.ToString();
 				ScreenMessages.PostScreenMessage("Seed: " + X, 3.0f, ScreenMessageStyle.UPPER_CENTER);
 				WarpDrive.seed = X;
 			}
@@ -73,7 +72,6 @@ namespace RandomizedSystems.WarpDrivers
 		public static void seedup(int seed)
 		{
 			int x = seed + 1;
-			seedString=x.ToString();
 			ScreenMessages.PostScreenMessage("SEED: " + x, 3.0f, ScreenMessageStyle.UPPER_CENTER);
 			WarpDrive.seed = x;
 		}
@@ -82,6 +80,7 @@ namespace RandomizedSystems.WarpDrivers
 		/// </summary>
 		public static void JumpToKerbol (bool processActions, Vessel warpVessel)
 		{
+			WarpDrive.seed = 0;
 			currentSeed = AstroUtils.KERBIN_SYSTEM_COORDS;
 			Warp (processActions, currentSeed, false);
 			PersistenceGenerator.WarpSingleVessel (lastSeed, seedString, warpVessel);
@@ -153,12 +152,13 @@ namespace RandomizedSystems.WarpDrivers
 			}
 			if (hasInit)
 			{
-				instance.Invoke ("PostWarp", Time.deltaTime);
+                PostWarp();
+				//instance.Invoke ("PostWarp", Time.deltaTime);
 			}
 			Debugger.LogWarning ("Created system " + currentSystem.name + " from string " + seedString + ".");
 		}
 
-		private void PostWarp ()
+		private static void PostWarp ()
 		{
 			Vessels.VesselManager.ClearNonSystemVessels ();
 			Debugger.Log ("All post-warp actions done.");

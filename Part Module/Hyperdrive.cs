@@ -32,11 +32,12 @@ namespace RandomizedSystems.Parts
 			{
 				ScreenMessages.PostScreenMessage ("Warp Drive cannot be activated. Please enter orbit around the nearest star.", 5.0f, ScreenMessageStyle.UPPER_CENTER);
 				return;
-			}
-			if (WarpDrive.seedString != WarpDrive.lastSeed)
+            }
+			if (WarpDrive.seed.ToString() != WarpDrive.currentSeed)
 			{
+				WarpDrive.currentSeed = WarpDrive.seed.ToString();
 				WarpDrive.SetNextWarpAction(new WarpDrive.OnWarpDelegate(WarpMessage), new WarpDrive.OnWarpDelegate(ResetKerbolPrompt));
-				WarpDrive.Warp(true, WarpDrive.seedString, false);
+				WarpDrive.Warp(true, WarpDrive.currentSeed, false);
 				PersistenceGenerator.WarpSingleVessel(WarpDrive.lastSeed, WarpDrive.seedString, FlightGlobals.ActiveVessel);
 			} else
             {
@@ -72,7 +73,7 @@ namespace RandomizedSystems.Parts
 
 		private void ResetKerbolPrompt ()
 		{
-			if (WarpDrive.seedString == AstroUtils.KERBIN_SYSTEM_COORDS)
+			if (WarpDrive.currentSeed == AstroUtils.KERBIN_SYSTEM_COORDS)
 			{
 				Events ["JumpToKerbol"].active = false;
 			}
