@@ -33,6 +33,13 @@ Here's a list of what changes:
 What happens is an entirely new solar system is produced. The planets themselves are the same as the old ones, but everything about them is different. You can then leave the system (by warping your ship home or simply pausing and hit "Return to Space Center") and all ships left in orbit will remain in orbit just as you left them.
 
 To activate the Warp Drive, just go into a solar orbit around Kerbol. Right-click on the Warp Drive part (found in the VAB under "Utility" -- it looks like an ASAS module), then click on "Activate Warp Drive." A box will come up asking for hyperspace coordinates. Type in your seed, then click the button and the system will randomize based on your seed.
+## changelog 1.3.0
+> added all missing features from the original
+> removed warp crystal
+> removed warp crystallizer part
+> no more immediate errors!
+
+
 ## changelog 1.2.8
 > added new resource, warp crystal
 > added new part, warp crystallizer
